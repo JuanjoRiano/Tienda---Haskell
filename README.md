@@ -48,9 +48,31 @@ Aplica un descuento en porcentaje a todos los productos del inventario.
 ## Ejecución del Programa
 
 El código incluye una función `main` para probar las funcionalidades:
+
 ```haskell
 main :: IO ()
+main = do
+    let inventory = []
+    let inventory1 = addProduct inventory "Manzanas" 0.5 100
+    let inventory2 = addProduct inventory1 "Platanos" 0.3 150
+    let inventory3 = updateQuantity inventory2 "Manzanas" 120
+    let inventory4 = removeProduct inventory3 "Platanos"
+    let (totalQty, totalValue) = inventorySummary inventory4
+
+    putStrLn $ "Inventario Final: " ++ show inventory4
+    putStrLn $ "Total de productos en stock: " ++ show totalQty
+    putStrLn $ "Valor total del inventario: " ++ show totalValue
+
+    -- Buscar un producto
+    case searchProduct inventory4 "Pablo" of
+        Just (price, qty) -> putStrLn $ "Manzanas - Precio: " ++ show price ++ ", Cantidad: " ++ show qty
+        Nothing -> putStrLn "Producto no encontrado"
+
+    -- Aplicar descuento del 10%
+    let discountedInventory = applyDiscount inventory4 10
+    putStrLn $ "Inventario con descuento: " ++ show discountedInventory
 ```
+
 Esta función:
 1. Agrega productos al inventario.
 2. Modifica cantidades.
@@ -67,4 +89,5 @@ Valor total del inventario: 60.0
 Producto no encontrado
 Inventario con descuento: [("Manzanas",0.45,120)]
 ```
+
 
