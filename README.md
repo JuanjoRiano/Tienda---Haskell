@@ -1,4 +1,4 @@
-# Inventory Management in Haskell
+# Gestor De Inventario - Haskell
 
 Este es un sencillo sistema de gestión de inventario implementado en Haskell. Permite agregar, actualizar, eliminar productos y aplicar descuentos, además de obtener un resumen del inventario.
 
